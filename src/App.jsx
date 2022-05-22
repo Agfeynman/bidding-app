@@ -1,10 +1,10 @@
 import React from 'react';
-import BiddingsList from './components/BiddingsList';
+import RoomsList from './components/RoomsList';
 
 const App = () => {
   return (
     <div className="App">
-      <BiddingsList />
+      <RoomsList />
     </div>
   );
 };
