@@ -1,19 +1,26 @@
 class BidsController < ApplicationController
+    def index
+        bids = Bid.all
+        render json: bids
+    end
+
     def create
         bid = Bid.new(bid_params)
-        bidding = Bidding.find(bid_params[:bid_id])
+        room = Room.find(bid_params["room_id"])
         if bid.save
-            serialized_data = ActiveModelSerializers::Adapter::Json.new(
-                BidSerializer.new(bid)
-            ).serializable_hash
-            BidsChannel.broadcast_to bidding, serialized_data
-            head :ok
+            puts "successfully saved a bid!"
+            RoomsChannel.broadcast_to(room, {
+                room: RoomSerializer.new(room),
+                users: UserSerializer.new(room.users),
+                bids: BidSerializer.new(room.bids)
+            })
         end
+        render json: BidSerializer.new(bid)
     end
 
     private
 
-        def bid_params
-            params.require(:bid).permit(:number, :bidding_id)
-        end
+    def bid_params
+        params.require(:bid).permit(:content, :user_id, :room_id)
+    end
 end

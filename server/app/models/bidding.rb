@@ -1,2 +1,0 @@
-class Bidding < ApplicationRecord
-end

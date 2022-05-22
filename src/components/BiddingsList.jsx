@@ -11,7 +11,7 @@ const BiddingsList = () => {
 
   useEffect(() => {
     return () => {
-      fetch(`${API_ROOT}/biddings`)
+      fetch(`${API_ROOT}/rooms`)
         .then((res) => res.json())
         .then((biddings) => {
           console.log('bidiiidngs', biddings);
