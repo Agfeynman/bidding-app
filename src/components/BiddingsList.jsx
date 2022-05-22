@@ -15,7 +15,7 @@ const BiddingsList = () => {
         .then((res) => res.json())
         .then((biddings) => {
           console.log('bidiiidngs', biddings);
-          this.setBiddings(conversations);
+          setBiddings(biddings);
         });
     };
   }, []);
