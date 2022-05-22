@@ -1,11 +1,12 @@
 class RoomsController < ApplicationController
     def index
         rooms = Room.all
-        render json: RoomSerializer.new(rooms)
+        p "Is rooms nil? #{rooms.nil?}"
+        render json:rooms
     end
 
     def show
         room = Room.find(params[:id])
-        render json: RoomSerializer.new(room)
+        render json:room
     end
 end
