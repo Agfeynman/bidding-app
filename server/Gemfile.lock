@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/codahale/bcrypt-ruby.git
+  revision: 667a136f1c4dd82ad40728300f3d579c0f26e98b
+  specs:
+    bcrypt (3.1.18)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -91,6 +97,7 @@ GEM
     irb (1.4.1)
       reline (>= 0.3.0)
     jsonapi-renderer (0.2.2)
+    jwt (1.5.6)
     loofah (2.18.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -172,8 +179,10 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.10.0)
+  bcrypt!
   bootsnap
   debug
+  jwt (~> 1.5, >= 1.5.4)
   puma (~> 5.0)
   rack-cors
   rails (~> 7.0.3)

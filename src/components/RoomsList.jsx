@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ActionCableConsumer } from 'react-actioncable-provider';
 import { API_ROOT } from '../constants';
 import Login from './Login';
+import SignIn from './SignIn';
 
 const RoomsList = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -34,11 +35,12 @@ const RoomsList = () => {
 
   return (
     <ActionCableConsumer
-      channel="WidgetChannel"
+      // channel="WidgetChannel"
       onReceived={() => console.log(received)}
     >
       <h1>roooms</h1>
-      <Login></Login>
+      <SignIn></SignIn>
+      {/* <Login></Login> */}
     </ActionCableConsumer>
   );
 };

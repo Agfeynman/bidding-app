@@ -4,33 +4,29 @@ const Login = () => {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
 
-  const updateState = (e) => {
-    console.log('updatestate', e.target.value);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('submit', e);
-    // fetch('http://localhost:3000/login', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     Accept: 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //     username: userName,
-    //     password: pwd,
-    //   }),
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     if (data.authenticated) {
-    //       localStorage.setItem('jwt_token', data.token);
-    //       // props.updateCurrentUser(data.user.data)
-    //     } else {
-    //       alert('Password/Username combination not found');
-    //     }
-    //   });
+    fetch('http://localhost:3000/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        username: userName,
+        password: password,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.authenticated) {
+          localStorage.setItem('jwt_token', data.token);
+          // TODO: update current user in the parent component
+        } else {
+          alert('Password/Username combination not found');
+        }
+      });
   };
 
   return (
@@ -40,13 +36,13 @@ const Login = () => {
         <input
           type="text"
           name="username"
-          onChange={updateState}
+          onChange={(e) => setUserName(e.target.value)}
           placeholder="username"
         />
         <input
           type="password"
           name="password"
-          onChange={updateState}
+          onChange={(e) => setPassword(e.target.value)}
           placeholder="password"
         />
         <input type="submit" value="Login" />
